@@ -146,13 +146,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capybara
+  capybara (~> 1.1.2)
   coffee-rails (~> 3.2.1)
-  factory_girl_rails
-  guard-rspec
-  jquery-rails
+  factory_girl_rails (~> 1.7.0)
+  guard-rspec (~> 0.6.0)
+  jquery-rails (~> 2.0.1)
   rails (= 3.2.1)
-  rspec-rails
+  rspec-rails (~> 2.8.1)
   sass-rails (~> 3.2.3)
-  sqlite3
+  sqlite3 (~> 1.3.5)
   uglifier (>= 1.0.3)
