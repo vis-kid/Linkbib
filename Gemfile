@@ -12,6 +12,7 @@ group :assets do
 end
 
 group :test do
+  gem "rspec2-rails-views-matchers", "~> 0.2.2"
   gem 'factory_girl_rails', '~> 1.7.0'
   gem 'capybara', '~> 1.1.2'
   gem 'guard-rspec', '~> 0.6.0'
