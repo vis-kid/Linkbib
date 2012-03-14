@@ -1,0 +1,9 @@
+<h1>Create a new link</h1>
+
+<%= form_for @link do |f| %>
+	<% @link.errors.full_messages.each do |error| %>
+		<p class='errors'><%= error %></p>
+	<% end %>
+	<%= f.label :url %>
+	<%= f.text_field :url %>
+<% end %>

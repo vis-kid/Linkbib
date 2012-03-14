@@ -12,6 +12,4 @@ describe Link do
     @valid_link = Link.new(:url => "https://www.pivotaltracker.com/projects/500485")
     @valid_link.should be_valid
   end
-  
-  
 end
