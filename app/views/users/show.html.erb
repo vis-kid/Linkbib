@@ -5,9 +5,10 @@
 <div>
 	<% @user.links.each do |link| %>
 		<div>
-			<h3><%= link.title %></h3>
+			<h1><%= link.title %></h1>
 			<h3><%= link.description %></h3>
-			<h5><%= link_to link.url, link.url %></h4>
+			<h5><%= link_to link.display_url, link.url %></h4>
+			<!-- <h5><%= link_to link.url, link.url %></h4> -->
 			<h6><%= time_ago_in_words(link.created_at) %>
 		</div>
 	<% end %>
