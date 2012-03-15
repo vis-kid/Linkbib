@@ -8,13 +8,31 @@ class LinksController < ApplicationController
     if @link.valid?
       @link.save
       flash[:success] = "Added a link"
-      redirect_to links_path
+      redirect_to user_path(current_user)
     else
       render 'new'
       flash[:error] = "Link invalid"
     end
   end
 
-  def index
+  def destroy
+    @link = Link.find(params[:id])
+    @link.delete
+    redirect_to user_path(current_user)
+  end
+  
+  def edit
+    @link = Link.find(params[:id])
+  end
+  
+  def update
+    @link = Link.find(params[:id])
+    if @link.update_attributes(params[:link])
+      flash[:success] = "Edited the link"
+      redirect_to user_path(current_user)
+    else
+      render 'edit'
+      flash[:error] = "Can't edit that way..."
+    end
   end
 end

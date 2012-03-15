@@ -3,9 +3,12 @@ class Link < ActiveRecord::Base
   validates :url, :presence => true, :format => {:with => URI::regexp(%w(http https))}
   
   before_validation :add_url_prefix
+  
   before_save :populate_title_and_description, :add_display_url
   
   default_scope order: 'links.created_at DESC'
+  
+ 
   
   private
   
@@ -20,12 +23,15 @@ class Link < ActiveRecord::Base
   end
   
   def populate_title_and_description
-    doc = Pismo::Document.new(url)
-    self.title = doc.titles[-1] # small bug in pismo, several titles available, one in head seems best
-    if doc.description
-      self.description = doc.description
-    else
-      self.description = format_description(doc.lede)
+    # Fill in title /description automatically on first save
+    if self.new_record?
+      doc = Pismo::Document.new(url)
+      self.title = doc.titles[-1] # small bug in pismo, several titles available, one in head seems best
+      if doc.description
+        self.description = doc.description
+      else
+        self.description = format_description(doc.lede)
+      end
     end
   end
   

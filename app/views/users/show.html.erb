@@ -2,14 +2,27 @@
 
 <p><%= link_to "Add a link.", new_link_path %></p>
 
-<div>
+<div class="links">
 	<% @user.links.each do |link| %>
-		<div>
-			<h1><%= link.title %></h1>
-			<h3><%= link.description %></h3>
-			<h5><%= link_to link.display_url, link.url %></h4>
-			<!-- <h5><%= link_to link.url, link.url %></h4> -->
-			<h6><%= time_ago_in_words(link.created_at) %>
+		<div class="link">
+			<div class="main">
+				<h3><%= link.title[0..65] + '…' %></h3>
+				<p><%= link.description %></p>
+				<div class="info">
+					<h5><%= link_to link.display_url, link.url %></h5>
+					<h6><%= time_ago_in_words(link.created_at) %></h6>
+				</div>
+			</div>
+			<div class="side">
+
+				<%= link_to edit_link_path(link), class: "btn btn-primary" do %>
+					<i class='icon-pencil icon-white'></i> Edit
+				<% end %>
+				<%= link_to link_path(link), :method=>:delete, :confirm => "Are you sure?",  class: "btn btn-danger" do %>
+					<i class='icon-trash icon-white'></i> Delete
+				<% end %>
+
+			</div>
 		</div>
 	<% end %>
 </div>
