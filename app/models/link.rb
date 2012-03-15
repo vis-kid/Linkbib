@@ -3,12 +3,13 @@ class Link < ActiveRecord::Base
   validates :url, :presence => true, :format => {:with => URI::regexp(%w(http https))}
   
   before_validation :add_url_prefix
-  before_save :populate_title_and_description
+  after_save :populate_title_and_description 
   
   private
   
   def add_url_prefix
-    self.url = "http://#{url}" unless url.start_with?("http://","https://")
+    self.url = self.url.gsub(" ", "")
+    self.url = "http://#{url}"  unless url.start_with?("http://","https://")
   end
   
   def populate_title_and_description
