@@ -1,0 +1,14 @@
+<h1><%= @user.email %>'s profile:</h1>
+
+<p><%= link_to "Add a link.", new_link_path %></p>
+
+<div>
+	<% @user.links.each do |link| %>
+		<div>
+			<h3><%= link.title %></h3>
+			<h3><%= link.description %></h3>
+			<h5><%= link_to link.url, link.url %></h4>
+			<h6><%= time_ago_in_words(link.created_at) %>
+		</div>
+	<% end %>
+</div>
