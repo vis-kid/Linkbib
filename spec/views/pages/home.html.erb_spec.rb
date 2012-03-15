@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-describe "links/index.html.erb" do
-<<<<<<< HEAD
+describe "pages/home.html.erb" do
   pending "add some examples to (or delete) #{__FILE__}"
-=======
-  
->>>>>>> viewing-links
 end
