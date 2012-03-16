@@ -11,16 +11,16 @@
 				<div class="info">
 					<h5><%= link_to link.display_url, link.url %><span class="pipe">|</span><span class="author">James Dean</span></h5>
 					
-					<h6><%= time_ago_in_words(link.created_at) + " ago"%></h6>
+					<h5 id="time"><%= time_ago_in_words(link.created_at) + " ago"%></h5>
 				</div>
 			</div>
 			<div class="side">
 
-							<%= link_to edit_link_path(link), class: "btn btn-primary" do %>
-								<i class='icon-pencil icon-white'></i> Edit
+							<%= link_to edit_link_path(link) do %>
+								<i class='icon-pencil icon'></i> Edit
 							<% end %>
-							<%= link_to link_path(link), :method=>:delete, :confirm => "Are you sure?",  class: "btn btn-danger" do %>
-								<i class='icon-trash icon-white'></i> Delete
+							<%= link_to link_path(link), :method=>:delete, :confirm => "Are you sure?" do %>
+								<i class='icon-trash icon'></i> Delete
 							<% end %>
 
 						</div>
