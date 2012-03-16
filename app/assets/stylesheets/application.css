@@ -11,3 +11,80 @@
  *= require_self
  *= require_tree .
 */
+
+img.bordered-fav {
+	border: 1px solid #c2c2c2;
+/*	box-shadow: 1px 1px 1px 1px #ddd;
+*/}
+
+.link {
+	border: 1px solid #c2c2c2;
+	background: #fff !important;
+	padding-top: 20px !important;
+	padding-bottom: 28px !important;
+	padding-left: 22px !important;
+	padding-right: 0px !important;
+	width: 800px !important;
+	height: 90px !important;
+	margin: 8px !important;
+    box-shadow: 4px 4px 2px #aaa;
+}
+	
+body {
+	background-color: #d9dfe4 !important;
+}
+
+/*.links.main {
+	height: 10px;
+	width: 800px;
+}*/
+
+.description {
+	height: 50px !important;
+	width: 618px !important;
+	padding-left: 27px !important;
+/*	border: 1px solid #c2c2c2;
+*/}
+
+.dots.url_trail {
+	color: #ccc;
+	letter-spacing: .2em;
+}
+
+.dots.desc {
+	color: #aaa;
+	letter-spacing: .2em;
+	font-size: 1.2em;
+}
+
+.pipe {
+	margin-left: 6px;
+	margin-right: 6px;
+	font-size: 1.2em;
+	/*font-style: ;*/
+	color: #888;
+}
+
+.author {
+	color: #555;
+}
+
+.link_title {
+	padding-top: 0px !important;
+	margin-top: 0px;
+/*	border: 1px solid green;
+	width: 1590px;*/
+	
+}
+
+
+
+.link_fav {
+	vertical-align: middle;
+	padding-right: 3px;
+}
+
+.info {
+	padding-left: 27px !important;
+/*	border: 1px solid #c2c2c2;
+*/}
