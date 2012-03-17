@@ -2,7 +2,7 @@ class Link < ActiveRecord::Base
   belongs_to :user
   validates :url, :presence => true, :format => {:with => URI::regexp(%w(http https))}
   
-  before_validation :add_url_prefix
+  after_validation :add_url_prefix
   
   before_save :add_display_url, :populate_title_and_description
   
@@ -11,15 +11,21 @@ class Link < ActiveRecord::Base
   private
   
   def add_url_prefix
-    self.url = self.url.gsub(" ", "")
-    self.url = "http://#{url}"  unless url.start_with?("http://","https://")
+    if self.url
+      self.url = self.url.gsub(" ", "")
+      self.url = "http://#{url}"  unless url.start_with?("http://","https://")
+    end
   end
   
   def add_display_url
-    fixed_url = self.url.gsub(/https?:\/\/w?w?w?\.?/, "")
+    fixed_url = self.url.gsub(/https?:\/\/(www)?\.?/, "")
     slash_index = fixed_url.index("/")
-    self.display_url = fixed_url[0..slash_index-1]
-    @domain = self.display_url
+    if slash_index
+      self.display_url = fixed_url[0..slash_index-1]
+    else
+      self.display_url = fixed_url
+    end
+    
   end
   
   def populate_title_and_description
@@ -43,7 +49,7 @@ class Link < ActiveRecord::Base
   end
   
   def find_favicon 
-    self.favicon_url = "http://www.google.com/s2/favicons?domain=#{@domain}"
+    self.favicon_url = "http://www.google.com/s2/favicons?domain=#{self.display_url}"
   end
   
   def format_description string

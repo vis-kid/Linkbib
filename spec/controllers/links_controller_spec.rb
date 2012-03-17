@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe LinksController do
+  include Devise::TestHelpers
+  
+  before(:each) do
+    @user = Factory.create(:user)
+    sign_in @user
+  end
 
   describe "GET 'new'" do
     it "returns http success" do
@@ -14,6 +20,7 @@ describe LinksController do
     end
   end
   
+  
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'
@@ -21,9 +28,11 @@ describe LinksController do
     end
   end
 
+  
   describe "GET 'create'" do
     
     context "successful save" do
+      
       let(:successful_params) do
         {:link => {:url => 'http://www.google.com'}}
       end
@@ -36,12 +45,12 @@ describe LinksController do
       
       it 'redirects to links index' do
         post :create, successful_params
-        response.should redirect_to(links_path)
+        response.should redirect_to(user_path(@user))
       end
       
       it 'provides a success message' do
         post :create, successful_params
-        flash[:notice].should == "Added a link"
+        flash[:success].should == "Added a link"
       end
     end
     

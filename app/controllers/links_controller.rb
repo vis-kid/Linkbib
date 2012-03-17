@@ -1,17 +1,24 @@
 class LinksController < ApplicationController
   def new
-    @link = Link.new
+    if user_signed_in?
+      @link = Link.new
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def create
-    @link = current_user.links.build(params[:link])
-    if @link.valid?
-      @link.save
-      flash[:success] = "Added a link"
-      redirect_to user_path(current_user)
+    if user_signed_in?
+      @link = current_user.links.build(params[:link])
+      if @link.valid?
+        @link.save
+        redirect_to user_path(current_user), :success => "Added a link"
+      else
+        render 'new'
+        flash[:error] = "Link invalid"
+      end
     else
-      render 'new'
-      flash[:error] = "Link invalid"
+      redirect_to new_user_session_path
     end
   end
 
