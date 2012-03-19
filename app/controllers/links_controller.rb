@@ -12,10 +12,11 @@ class LinksController < ApplicationController
       @link = current_user.links.build(params[:link])
       if @link.valid?
         @link.save
-        redirect_to user_path(current_user), :success => "Added a link"
+        flash[:success] = "Added a link"
+        redirect_to user_path(current_user)
       else
         render 'new'
-        flash[:error] = "Link invalid"
+        flash.now[:error] = "Link invalid"
       end
     else
       redirect_to new_user_session_path

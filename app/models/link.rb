@@ -1,6 +1,7 @@
 class Link < ActiveRecord::Base
   belongs_to :user
   validates :url, :presence => true, :format => {:with => URI::regexp(%w(http https))}
+  validates_uniqueness_of :url, :scope => :user_id
   
   after_validation :add_url_prefix
   
@@ -32,7 +33,11 @@ class Link < ActiveRecord::Base
     # Fill in title /description automatically on first save
     if self.new_record?
       doc = Pismo::Document.new(url)
-      self.title = doc.html_title # small bug in pismo, several titles available, one in head seems best
+      if doc.html_title
+        self.title = doc.html_title
+      else
+        self.title = self.url
+      end
       if doc.description
         self.description = format_description doc.description
       else
