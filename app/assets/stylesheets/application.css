@@ -28,11 +28,20 @@ img.bordered-fav {
 	width: 800px !important;
 	height: 90px !important;
 	margin: 1px !important;
+	margin-bottom: 7px !important;
     box-shadow: 2px 2px 2px #aaa;
 }
 	
 body {
 	background-color: #FFFAF0 !important;
+}
+
+#container_body {
+	margin-top: 60px;
+}
+
+div#main {
+	margin-top: 30px;
 }
 
 /*.links.main {

@@ -2,7 +2,7 @@ Linkbib::Application.routes.draw do
 
   get "passthrough/index"
 
-  devise_for :users
+  devise_for :users 
 
   get "links/new"
 
@@ -11,11 +11,14 @@ Linkbib::Application.routes.draw do
   get "links/index"
   
   resources :links
-  resources :users
   
-  match "/home" => 'pages#home'
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   
-  root :to => 'passthrough#index'
+  root :to => 'pages#home'
 
 
 end

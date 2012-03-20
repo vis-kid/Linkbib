@@ -9,18 +9,16 @@
 <body>
 
 
-<div class="container">
+	<%= render 'layouts/header' %>
 
-	<% if user_signed_in? %>
-		<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-	<% end %>
-	
-	<% flash.each do |key, value| %>
-	  <div class="alert alert-<%= key %>"><%= value %></div>
-	<% end %>
-	
-	
-	<%= yield %>
-</div>
+	<div class="container" id="container_body">
+
+		<% flash.each do |key, value| %>
+		<div class="alert alert-<%= key %>"><%= value %></div>
+		<% end %>
+			<%= yield %>
+	</div>
+
+
 </body>
 </html>

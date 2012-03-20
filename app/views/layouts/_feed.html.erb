@@ -1,12 +1,10 @@
-
-<% if user_signed_in? %>
-
 <h1><%= current_user.email %>'s feed:</h1>
  
 
 <p><%= link_to "Add a link.", new_link_path %></p>
+
 <div class="links">
-	<% @feed.each do |link| %>
+	<% @feed do |link| %>
 		<div class="link">
 			<div class="main">
 				<h3><span class="link_fav"><%= image_tag(link.favicon_url, :class=>"bordered-fav") if link.favicon_url %></span> <span class="link_title"><%= link_to (link.title[0..65] + '…'), link.url %></span></h3>
@@ -30,5 +28,3 @@
 		</div>
 	<% end %>
 </div>
-<% else %>
-<% end %>

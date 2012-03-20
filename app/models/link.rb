@@ -32,23 +32,26 @@ class Link < ActiveRecord::Base
   def populate_title_and_description
     # Fill in title /description automatically on first save
     if self.new_record?
-      doc = Pismo::Document.new(url)
-      if doc.html_title
-        self.title = doc.html_title
-      else
-        self.title = self.url
-      end
-      if doc.description
-        self.description = format_description doc.description
-      else
-        self.description = format_description(doc.lede) if doc.lede
-      end
-      if doc.favicon
-        self.favicon_url = doc.favicon
-      else
-        self.favicon_url = find_favicon
-        #self.favicon_url = "/assets/globe_favicon_16x16.ico"
-        
+      begin
+        doc = Pismo::Document.new(url)
+        if doc.html_title
+          self.title = doc.html_title
+        else
+          self.title = self.url
+        end
+        if doc.description
+          self.description = format_description doc.description
+        else
+          self.description = format_description(doc.lede) if doc.lede
+        end
+        if doc.favicon
+          self.favicon_url = doc.favicon
+        else
+          self.favicon_url = find_favicon
+          #self.favicon_url = "/assets/globe_favicon_16x16.ico" 
+        end
+      rescue
+        self.title = url
       end
     end
   end
