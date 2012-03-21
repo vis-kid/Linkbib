@@ -28,16 +28,7 @@ class User < ActiveRecord::Base
   end
   
   def feed
-    feed_links = []
-    
-    followed_users = self.followed_users
-    
-    followed_users.each do |follower|
-      follower.links.each do |follower_link|
-        feed_links << follower_link
-      end
-    end
-    feed_links
+    Link.from_users_followed_by(self)
   end
  
 end

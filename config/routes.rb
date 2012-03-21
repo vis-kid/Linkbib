@@ -12,6 +12,8 @@ Linkbib::Application.routes.draw do
   
   resources :links
   
+  resources :relationships
+  
   resources :users do
     member do
       get :following, :followers

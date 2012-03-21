@@ -2,6 +2,12 @@
  
 
 <p><%= link_to "Add a link.", new_link_path %></p>
+<% unless @user == current_user %>
+	<%= form_for current_user.relationships.build(:followed_id => @user.id), :remote => true do |f| %>
+		<div><%= f.hidden_field :followed_id %></div>
+		<div class="actions"><%= f.submit "Follow" %></div>
+	<% end %>
+<% end %>
 
 <div class="links">
 	<% @user.links.each do |link| %>
