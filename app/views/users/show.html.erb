@@ -1,36 +1,25 @@
-<h1><%= @user.email %>'s profile:</h1>
- 
+<h1><%= gravatar_for(@user) %> <%= @user.name %>'s profile:</h1>
 
-<p><%= link_to "Add a link.", new_link_path %></p>
+<% if @user == current_user %> 
+	<%= render 'shared/add_link', :link => @link %>
+<% end %>
+
 <% unless @user == current_user %>
-	<%= form_for current_user.relationships.build(:followed_id => @user.id), :remote => true do |f| %>
-		<div><%= f.hidden_field :followed_id %></div>
-		<div class="actions"><%= f.submit "Follow" %></div>
-	<% end %>
+	<div id="follow_form">
+		<% if current_user.following?(@user) %>
+			<%= render 'unfollow' %>
+		<% else  %>
+			<%= render 'follow' %>
+		<% end %>
+	</div>
 <% end %>
 
 <div class="links">
+	
 	<% @user.links.each do |link| %>
-		<div class="link">
-			<div class="main">
-				<h3><span class="link_fav"><%= image_tag(link.favicon_url, :class=>"bordered-fav") if link.favicon_url %></span> <span class="link_title"><%= link_to (link.title[0..65] + '…'), link.url %></span></h3>
-				<div class="description"><p><%= link.description %><span class="dots desc"> ...</span></p></div>
-				<div class="info">
-					<h5><%= link_to link.display_url, link.url %><span class="pipe">|</span><span class="author">James Dean</span></h5>
-					
-					<h5 id="time"><%= time_ago_in_words(link.created_at) + " ago"%></h5>
-				</div>
-			</div>
-			<div class="side">
-
-							<%= link_to edit_link_path(link) do %>
-								<i class='icon-pencil icon'></i> Edit
-							<% end %>
-							<%= link_to link_path(link), :method=>:delete, :confirm => "Are you sure?" do %>
-								<i class='icon-trash icon'></i> Delete
-							<% end %>
-
-						</div>
-		</div>
+	
+		<%= render 'shared/link', :link => link %>
+		
 	<% end %>
+	
 </div>

@@ -53,11 +53,9 @@ class Link < ActiveRecord::Base
         else
           self.description = format_description(doc.lede) if doc.lede
         end
-        if doc.favicon
-          self.favicon_url = doc.favicon
-        else
-          self.favicon_url = find_favicon
-          #self.favicon_url = "/assets/globe_favicon_16x16.ico" 
+        self.favicon_url = find_favicon
+        if doc.author
+          self.author = format_auth doc.author
         end
       rescue
         self.title = url
@@ -68,6 +66,15 @@ class Link < ActiveRecord::Base
   def find_favicon 
     self.favicon_url = "http://www.google.com/s2/favicons?domain=#{self.display_url}"
   end
+  
+  def format_auth author
+    if author.downcase.include?("and")
+      (author.downcase.split(' ').each {|word| word.capitalize!}).join(' ').gsub("And ", "and ")
+    else
+      (author.downcase.split(' ').each {|word| word.capitalize!}).join(' ')
+    end
+  end
+  
   
   def format_description string
     string[0..220].split[0..-2].join(' ')

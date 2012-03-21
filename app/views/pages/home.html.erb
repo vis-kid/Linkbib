@@ -1,33 +1,17 @@
 <% if user_signed_in? %>
 
-<h1><%= current_user.email %>'s feed:</h1>
- 
+	<h1><%= current_user.name %>'s feed:</h1>
+	
 
-<p><%= link_to "Add a link.", new_link_path %></p>
-<div class="links">
-	<% @feed.each do |link| %>
-		<div class="link">
-			<div class="main">
-				<h3><span class="link_fav"><%= image_tag(link.favicon_url, :class=>"bordered-fav") if link.favicon_url %></span> <span class="link_title"><%= link_to (link.title[0..65] + '…'), link.url %></span></h3>
-				<div class="description"><p><%= link.description %><span class="dots desc"> ...</span></p></div>
-				<div class="info">
-					<h5><%= link_to link.display_url, link.url %><span class="pipe">|</span><span class="author">James Dean</span></h5>
-					
-					<h5 id="time"><%= time_ago_in_words(link.created_at) + " ago"%></h5>
-				</div>
-			</div>
-			<div class="side">
+	<%= render 'shared/add_link', :link => @link %>
 
-							<%= link_to edit_link_path(link) do %>
-								<i class='icon-pencil icon'></i> Edit
-							<% end %>
-							<%= link_to link_path(link), :method=>:delete, :confirm => "Are you sure?" do %>
-								<i class='icon-trash icon'></i> Delete
-							<% end %>
+	
+	<div class="links">
+		<% @feed.each do |link| %>
+		
+			<%= render 'shared/link', :link => link %>
+		
+		<% end %>
+	</div>
 
-						</div>
-		</div>
-	<% end %>
-</div>
-<% else %>
 <% end %>

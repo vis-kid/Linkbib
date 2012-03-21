@@ -6,6 +6,7 @@ gem 'jquery-rails', '~> 2.0.1'
 gem 'devise'
 gem 'pismo'
 gem "twitter-bootstrap-rails"
+gem 'gravatar_image_tag'
 
 gem 'rspec-rails', '~> 2.8.1', :group => [:test, :development]
 
