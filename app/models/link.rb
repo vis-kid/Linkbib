@@ -44,7 +44,10 @@ class Link < ActiveRecord::Base
       begin
         doc = Pismo::Document.new(url)
         if doc.html_title
-          self.title = doc.html_title
+          if doc.html_title.include?(" - ")
+            title_cutoff = doc.html_title.index(" - ")
+            self.title = doc.html_title[0..title_cutoff]
+          end
         else
           self.title = self.url
         end
