@@ -2,13 +2,9 @@ class Link < ActiveRecord::Base
   belongs_to :user
   validates :url, :presence => true, :format => {:with => URI::regexp(%w(http https))}
   validates_uniqueness_of :url, :scope => :user_id
-  
   after_validation :add_url_prefix
-  
-  before_save :add_display_url, :populate_title_and_description
-  
+  before_save :add_display_url, :populate_title_and_description, :ensure_title_format, :ensure_description_format
   default_scope order: 'links.created_at DESC'
-  
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
   
   private
@@ -35,33 +31,30 @@ class Link < ActiveRecord::Base
     else
       self.display_url = fixed_url
     end
-    
   end
   
   def populate_title_and_description
-    # Fill in title /description automatically on first save
     if self.new_record?
       begin
         doc = Pismo::Document.new(url)
         if doc.html_title
-          if doc.html_title.include?(" - ")
-            title_cutoff = doc.html_title.index(" - ")
-            self.title = doc.html_title[0..title_cutoff]
-          end
+          self.title = doc.html_title
+          self.display_title = title_format doc.html_title
         else
-          self.title = self.url
+          self.title, self.display_title = self.url
         end
         if doc.description
-          self.description = format_description doc.description
+          self.description = description_format doc.description
         else
-          self.description = format_description(doc.lede) if doc.lede
+          self.description = description_format(doc.lede) if doc.lede
         end
         self.favicon_url = find_favicon
         if doc.author
-          self.author = format_auth doc.author
+          self.author = author_format doc.author
         end
       rescue
         self.title = url
+        self.display_title = url
       end
     end
   end
@@ -70,7 +63,7 @@ class Link < ActiveRecord::Base
     self.favicon_url = "http://www.google.com/s2/favicons?domain=#{self.display_url}"
   end
   
-  def format_auth author
+  def author_format author
     if author.downcase.include?("and")
       (author.downcase.split(' ').each {|word| word.capitalize!}).join(' ').gsub("And ", "and ")
     else
@@ -78,8 +71,42 @@ class Link < ActiveRecord::Base
     end
   end
   
-  
-  def format_description string
-    string[0..220].split[0..-2].join(' ')
+  def description_format string
+    if string.length > 200
+      string[0..200].split[0..-2].join(' ') + " ..."
+    else
+      string
+    end
   end
+  
+  def title_remove_domain title
+    if title.include?(" - ")
+      title_cutoff = title.index(" - ")
+      title[0..title_cutoff - 1]
+    else
+      title
+    end
+  end
+  
+  def title_format title
+    title = title_remove_domain title
+    if title.length > 65
+      ((title[0..65].split)[0..-2]).join(" ") + " ..."
+    else
+      title
+    end
+  end
+  
+  def ensure_title_format
+    if self.display_title.length > 65
+      self.display_title = title_format self.display_title
+    end
+  end
+  
+  def ensure_description_format
+    if self.description.length > 200
+      self.description = description_format self.description
+    end
+  end
+  
 end

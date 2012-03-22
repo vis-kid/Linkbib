@@ -1,7 +1,7 @@
 <div class="link">
 	<div class="main">
-		<h3><span class="link_fav"><%= image_tag(link.favicon_url, :class=>"bordered-fav") if link.favicon_url %></span> <span class="link_title"><%= link_to (link.title[0..60] + '…'), link.url %></span></h3>
-		<div class="description"><p><%= link.description %><span class="dots desc"> ...</span></p></div>
+		<h3><span class="link_fav"><%= image_tag(link.favicon_url, :class=>"bordered-fav") if link.favicon_url %></span> <span class="link_title"><%= link_to link.display_title, link.url %></span></h3>
+		<div class="description"><p><%= link.description %></p></div>
 		<div class="info">
 			<h5><%= link_to link.display_url, link.url %>
 				<% if link.author %>
@@ -9,18 +9,18 @@
 					<span class="author"><%= link.author%></span>
 				<% end %>
 			</h5>
-			
 			<h5 id="time">Shared by <%= link_to User.find(link.user_id).name, user_path(User.find(link.user_id)) %> <%= time_ago_in_words(link.created_at) + " ago"%></h5>
 		</div>
 	</div>
 	<div class="side">
-
 					<%= link_to edit_link_path(link) do %>
 						<i class='icon-pencil icon'></i> Edit
 					<% end %>
 					<%= link_to link_path(link), :method=>:delete, :confirm => "Are you sure?" do %>
 						<i class='icon-trash icon'></i> Delete
 					<% end %>
-
 				</div>
 </div>
+
+
+<!-- <span class="dots desc"> ...</span> -->
