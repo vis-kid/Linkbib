@@ -7,6 +7,9 @@ div.links {
 	div.link {
 		margin-bottom: 2em;
 		height: 85px;
+		.instapaper_individual_link {
+			width: 80px !important;
+		}
 		div.main {
 			margin-right: 5%;
 			float: left;

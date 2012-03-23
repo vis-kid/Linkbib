@@ -19,8 +19,16 @@
 					<%= link_to link_path(link), :method=>:delete, :confirm => "Are you sure?" do %>
 						<i class='icon-trash icon'></i> Delete
 					<% end %>
+					<br/><%= link_to "http://www.instapaper.com/api/add?username=benjohnstonsf@gmail.com&url=#{link.url}&redirect=close", :method => :post, :class => "instapaper_individual_link" do %>
+					  <i class='icon-bookmark'></i> Instapaper
+					<% end %>
+					
 				</div>
 </div>
 
 
 <!-- <span class="dots desc"> ...</span> -->
+
+
+
+<!-- @instapaper_link = "http://www.instapaper.com/api/add?username=benjohnstonsf@gmail.com&password=brucelee1&url=#{link.url}" -->

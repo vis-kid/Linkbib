@@ -1,17 +1,12 @@
 <% if user_signed_in? %>
 
 	<h1><%= current_user.name %>'s feed:</h1>
-	
-
-	<%= render 'shared/add_link', :link => @link %>
-
-	
+		<%= render 'shared/add_link', :link => @link %>
 	<div class="links">
 		<% @feed.each do |link| %>
-		
-			<%= render 'shared/link', :link => link %>
-		
+			<%= render 'shared/link', :link => link, :instapaper => @instapaper %>
 		<% end %>
 	</div>
 
 <% end %>
+
