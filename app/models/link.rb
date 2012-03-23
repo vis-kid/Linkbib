@@ -43,10 +43,10 @@ class Link < ActiveRecord::Base
         else
           self.title, self.display_title = self.url
         end
-        if doc.description
-          self.description = description_format doc.description
-        else
+        if doc.description.blank? || doc.description.nil?
           self.description = description_format(doc.lede) if doc.lede
+        else 
+          self.description = description_format doc.description
         end
         self.favicon_url = find_favicon
         if doc.author

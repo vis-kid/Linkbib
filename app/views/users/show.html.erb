@@ -23,3 +23,25 @@
 	<% end %>
 	
 </div>
+
+<% unless @current_user.nil? %>
+<script>
+$('a.instapaper').click(function() {
+	var url = $(this).parents('.link').find('.link_title').children('a').attr('href')
+	$.ajax({
+	    type: 'GET',
+	    dataType: 'jsonp',
+	    url:'http://www.instapaper.com/api/add',
+	    data: {"url": url , "username": "<%= @current_user.email %>", "password": "brucelee1" },
+	    context: document.body,
+	    error: function() { 
+	      alert('There was an error!');
+	    },
+	    success: function() {
+	      alert('Page sent');
+	    },
+	    jsonp: 'jsonp'
+	});
+});
+</script>
+<% end%>

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @link = current_user.links.build
+    @current_user = current_user
   end
   
   def following
