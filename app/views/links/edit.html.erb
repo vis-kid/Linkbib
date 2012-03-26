@@ -6,8 +6,12 @@
 	<% end %>
 	<%= f.label :title %>
 	<%= f.text_field :display_title %>
+		<%= f.submit "Save"%>
 	<%= f.label :description %>
-	<%= f.text_field :description %>
-	<%= f.submit "Edit url!"%>
+	<%= f.text_area :description %>
+	<%= link_to link_path(@link), :method=>:delete, :confirm => "Are you sure?" do %>
+		<i class='icon-trash icon'></i> Delete
+	<% end %>
+
 
 <% end %>

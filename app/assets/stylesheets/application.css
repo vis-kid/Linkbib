@@ -87,7 +87,8 @@ div#main {
 	
 }
 
-
+input#link_display_title, input#link_url {
+	width: 500px;
 
 .link_fav {
 	vertical-align: middle;

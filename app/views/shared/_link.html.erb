@@ -12,12 +12,9 @@
 			<h5 id="time">Shared by <%= link_to User.find(link.user_id).name, user_path(User.find(link.user_id)) %> <%= time_ago_in_words(link.created_at) + " ago"%></h5>
 		</div>
 	</div>
-	<div class="side">
+	<div class="<%= "nofade" unless (Time.now - link.created_at) > 60 %> side">
 					<%= link_to edit_link_path(link) do %>
 						<i class='icon-pencil icon'></i> Edit
-					<% end %>
-					<%= link_to link_path(link), :method=>:delete, :confirm => "Are you sure?" do %>
-						<i class='icon-trash icon'></i> Delete
 					<% end %>
 					<%= link_to "#", :class => "instapaper" do %>
 					  <i class='icon-book'></i> Instapaper
@@ -25,5 +22,3 @@
 					
 				</div>
 </div>
-
-<!-- <span class="dots desc"> ...</span> -->
