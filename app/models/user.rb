@@ -30,5 +30,9 @@ class User < ActiveRecord::Base
   def feed
     Link.from_users_followed_by(self)
   end
+  
+  def to_param
+    name
+  end
  
 end
