@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
                                      class_name:  "Relationship",
                                      dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+  
+  before_save :format_username
     
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
@@ -34,5 +36,12 @@ class User < ActiveRecord::Base
   def to_param
     name
   end
+  
+  private
+  
+  def format_username
+    self.name = self.name.gsub(" ", "")
+  end
+    
  
 end
