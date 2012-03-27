@@ -37,7 +37,12 @@ body {
 }
 
 #container_body {
-	margin-top: 60px;
+	margin-top: 60px;	
+}
+
+input.btn-large {
+    color: white !important;
+    width: 220px !important;
 }
 
 div#main {
