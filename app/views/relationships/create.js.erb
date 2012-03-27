@@ -1,1 +1,1 @@
-$("#follow_form").html("<%= escape_javascript(render('users/unfollow')) %>")
+$("#follow_form").html("<%= escape_javascript(render 'users/unfollow', :user_to_unfollow => @user) %>")

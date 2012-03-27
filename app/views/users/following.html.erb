@@ -1,0 +1,10 @@
+<% @following.each do |followed_user| %>
+	<h3><%= gravatar_for(followed_user) %> <%= followed_user.name %></h3>
+	<div id="follow_form">
+		<% if true %>
+			<%= render 'unfollow', :user_to_unfollow => followed_user %>
+		<% else  %>
+			<%= render 'follow', :user_to_follow => followed_user%>
+		<% end %>
+	</div>
+<% end %>

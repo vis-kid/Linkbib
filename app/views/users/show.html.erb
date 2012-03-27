@@ -7,9 +7,9 @@
 <% unless @user == current_user %>
 	<div id="follow_form">
 		<% if current_user.following?(@user) %>
-			<%= render 'unfollow' %>
+			<%= render 'unfollow', :user_to_unfollow => @user %>
 		<% else  %>
-			<%= render 'follow' %>
+			<%= render 'follow', :user_to_follow => @user %>
 		<% end %>
 	</div>
 <% end %>
@@ -22,6 +22,11 @@
 		
 	<% end %>
 	
+</div>
+
+<div id="side">
+	<%= link_to "Following", following_user_path(@user) %>
+	<%= link_to "Followers", followers_user_path(@user) %>
 </div>
 
 <% unless @current_user.nil? %>

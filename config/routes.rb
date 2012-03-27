@@ -21,7 +21,7 @@ Linkbib::Application.routes.draw do
   end
   
   root :to => 'pages#home'
+  
   get "/:id", :to => "users#show", :as => :user
-
 
 end

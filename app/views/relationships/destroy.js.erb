@@ -1,1 +1,1 @@
-$('#follow_form').html("<%= escape_javascript(render('users/follow')) %>")
+$('#follow_form').html("<%= escape_javascript(render 'users/follow', :user_to_follow => @user) %>")
