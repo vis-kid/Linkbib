@@ -34,6 +34,8 @@ img.bordered-fav {
 	
 body {
 	background-color: #FFFAF0 !important;
+	background-image: url("http://subtlepatterns.com/patterns/concrete_wall_3.png");
+	background-repeat: repeat;
 }
 
 #container_body {

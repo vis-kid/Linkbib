@@ -80,12 +80,14 @@ class Link < ActiveRecord::Base
   end
   
   def title_remove_domain title
-    if title.include?(" - ")
-      title_cutoff = title.index(" - ")
-      title[0..title_cutoff - 1]
-    else
-      title
+    website_prefixes = [" - ", " : ", " | "]
+    website_prefixes.each do |i|
+      if title.include?(i)
+        title_cutoff = title.index(i)
+        title = title[0..title_cutoff - 1]
+      end
     end
+    title
   end
   
   def title_format title
