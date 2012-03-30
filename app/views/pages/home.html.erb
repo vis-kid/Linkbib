@@ -4,7 +4,7 @@
 		<%= render 'shared/add_link', :link => @link %>
 	<div class="links">
 		<% @feed.each do |link| %>
-			<%= render 'shared/link', :link => link, :instapaper => @instapaper %>
+			<%= render 'shared/link_home', :link => link, :instapaper => @instapaper %>
 		<% end %>
 	</div>
 

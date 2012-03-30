@@ -1,0 +1,26 @@
+<div class="link">
+	<div class="link-left">
+		<div class="title_block">
+		  <h3><span class="link_fav"><%= image_tag(link.favicon_url, :class=>"bordered-fav") if link.favicon_url %></span>
+			    <span class="link_title"><%= link_to link.display_title, link.url %></span></h3>
+		</div>
+		<div class="description_block"><p><%= link.description %></p></div>
+		<div class="meta_block">
+			<h5 id="source"><div class="source-author-position"><%= link_to link.display_url, link.url %>
+				<% if link.author %>
+					<span class="pipe">|</span>
+					<span class="author"><%= link.author%></span>
+				<% end %></div></h5>
+			<h5 id="time"><div class="time-position">Shared by <%= link_to User.find(link.user_id).name, user_path(User.find(link.user_id)) %> 
+			<%= time_ago_in_words(link.created_at) + " ago"%></div></h5>
+		</div>
+	</div>
+	<div class="<%= "nofade" unless (Time.now - link.created_at) > 60 %>side">
+		<%= link_to edit_link_path(link) do %>
+			<i class='icon-pencil icon'></i> Edit
+		<% end %>
+		<%= link_to "#", :class => "instapaper" do %>
+		  <i class='icon-book'></i> Instapaper
+		<% end %>
+	</div>
+</div>

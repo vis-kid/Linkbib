@@ -12,11 +12,6 @@
  *= require_tree .
 */
 
-img.bordered-fav {
-	border: 1px solid #c2c2c2;
-/*	box-shadow: 1px 1px 1px 1px #ddd;
-*/}
-
 .brand {
     color: #333 !important;
     font-size: 2em !important;;
@@ -31,7 +26,7 @@ img.bordered-fav {
 
 
 .navbar-inner {
-    height: 40px !important;;
+    height: 40px !important;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 7px;
@@ -54,21 +49,29 @@ img.bordered-fav {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
-.link {
-/*	opacity:0.7;*/
-	border: 1px solid #c2c2c2;
-	background: #fff !important;
-	padding-top: 10px !important;
-	padding-bottom: 20px !important;
-	padding-left: 22px !important;
-	padding-right: 0px !important;
-	width: 800px !important;
-	height: 90px !important;
-	margin: 1px !important;
-	margin-bottom: 7px !important;
-    box-shadow: 2px 2px 2px #aaa;
-    border-radius: 7px;
-}
+/*.navbar-inner {
+  padding-left: 20px !important;
+  padding-top: 20px !important;
+  vertical-align: center !important;
+  zoom: 1 !important;
+  height: 60px !important;
+  padding-right: 20px !important;
+  background-color: #fcfbfd !important;
+  background-image: -moz-linear-gradient(top, #fcfbfd, #fcfbfd) !important;
+  background-image: -ms-linear-gradient(top, #fcfbfd, #fcfbfd) !important;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fcfbfd), to(#fcfbfd)) !important;
+  background-image: -webkit-linear-gradient(top, #fcfbfd, #fcfbfd) !important;
+  background-image: -o-linear-gradient(top, #fcfbfd, #fcfbfd) !important;
+  background-image: linear-gradient(top, #fcfbfd, #fcfbfd) !important;
+  background-repeat: repeat-x !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfbfd', endColorstr='#fcfbfd', GradientType=0) !important;
+  -webkit-border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  border-radius: 4px !important;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+}*/
 	
 body {
 	background-color: #FFFAF0 !important;
@@ -78,6 +81,8 @@ body {
 
 #container_body {
 	margin-top: 80px;	
+/*  border: solid black 1px !important;
+*/	
 }
 
 input.btn-large {
@@ -85,62 +90,167 @@ input.btn-large {
     width: 220px !important;
 }
 
-div#main {
-	margin-top: 30px;
+input#link_display_title, input#link_url {
+	width: 500px;
+    border: solid black 1px;
 }
 
-/*.links.main {
-	height: 10px;
-	width: 800px;
-}*/
+/*******************************Links*********************************************/
 
-.description {
-	height: 50px !important;
-	width: 618px !important;
-	padding-left: 27px !important;
-/*	border: 1px solid #c2c2c2;
+.link {
+/*	opacity:0.7;*/
+	background: #fff !important;
+	width: 850px !important;
+	height: 110px !important;
+	padding-left: 0px !important;
+	padding-bottom: 0px !important;
+	margin: 0px !important;
+    margin-bottom: 15px !important;
+    box-shadow: 3px 3px 3px #aaa;
+    border-radius: 6px;
+/*    border: solid red 1px;
 */}
 
-.dots.url_trail {
-	color: #ccc;
-	letter-spacing: .2em;
+.link-left {
+	margin-top: 0px;
+	width: 650px !important;
+	height: 110px !important;
+	padding-left: 0px;
+	float: left !important;
+/*  border-right: 3px solid #ddd !important;
+*/	border-right: 1px dotted silver !important;
+    
+/*    border: solid black 1px !important;
+*/}
+
+.title_block {
+    height: 28px;
+    width: 650px;
+    padding-top: 7px;
 }
 
-.dots.desc {
-	color: #aaa;
-	letter-spacing: .2em;
-	font-size: 1.2em;
+.link_fav {
+    padding-left: 9px;
+}
+
+img.bordered-fav {
+	vertical-align: middle;
+	margin-bottom: 4px;
+	padding-right: 1px;
+/*  border: 1px solid #c2c2c2;
+*/}
+
+.link_title a{
+	padding-left: 2px !important;
+	margin-top: 0px;
+	font-family: 'georgia';
+	color: #211F1F;
+}
+
+.description_block {
+    width: 610px;
+    height: 39px;
+    padding-left: 32px;
+    padding-right: 10px;
+    padding-top: 6px;
+/*    border: solid black 1px !important;        
+*/}
+
+.description_block p{
+    vertical-align: middle;
+}
+
+.meta_block {
+    height: 30px;
+    width: 650px;
+/*    border: solid green 1px;
+*/}
+
+#source {
+    height: 25px;
+    width: 295px;
+    float: left;
+    padding-left: 32px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+    line-height: 25px;
+    vertical-align: middle;
+/*    border: solid blue 1px;
+*/}
+
+.author {
+    margin: 0px !important;
+    padding: 0px !important;    
 }
 
 .pipe {
-	margin-left: 6px;
-	margin-right: 6px;
-	font-size: 1.2em;
-	/*font-style: ;*/
-	color: #888;
+    margin: 0px !important;
+    padding: 0px;
 }
 
-.author {
-	color: #555;
-}
 
-.link_title {
-	padding-top: 0px !important;
-	margin-top: 0px;
-/*	border: 1px solid green;
-	width: 1590px;*/
-	
-}
-
-input#link_display_title, input#link_url {
-	width: 500px;
-
-.link_fav {
-	vertical-align: middle;
-	padding-right: 3px;
-}
-
-.info {
-	padding-left: 27px !important;
-/*	border: 1px solid #c2c2c2;
+#time {
+    height: 25px;
+    width: 308px;
+    float: right;
+    padding-right: 10px;
+    padding-bottom: 5px;
+/*    border: solid blue 1px;
 */}
+
+.time-position {
+    vertical-align: middle !important;
+    float: right;
+    line-height: 25px;
+    height: 25px;
+    color: #aaa;
+}
+
+.side {
+    margin: 0px !important;
+    padding: 0px !important;
+    float: right !important;
+    height: 110px !important;
+    width: 146px !important;
+/*    border: solid purple 1px;
+*/}
+
+.link-right {
+    margin: 0px !important;
+    padding: 0px !important;
+    float: right !important;
+    height: 110px !important;
+    width: 196px !important;
+/*    border: solid purple 1px;
+*/}
+
+.mini-gravatar{
+    border-radius: 5px;
+    float: right;
+    margin: 12px;
+    box-shadow: 2px 2px 2px #aaa;
+}
+
+.shared-by {
+    float: left;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.shared-by a{
+    font-size: 1.3em;
+}
+
+.shared-by p{
+/*    font-size: 1.3em;
+*/    margin-top: 0px;
+line-height: 2px;
+margin-top: 5px;
+}
+
+.social_btn {
+    margin: 7px;
+    float: left;
+}
+	
